@@ -1,9 +1,10 @@
 module Starter2
 
-#using BenchMark
+using BenchmarkTools
 
 export FibIt
 export FibRec
+export FibMem
 
 function FibIt(n,a,b)
     if n == 1
@@ -31,9 +32,11 @@ function FibRec(n,a,b)
     end
 end
 
-function FibMem()
-    
-    
+memo = Dict{Int64,Int64}()
+function FibMem(n)
+    get!(memo, n) do
+        n<3 ? 1 : FibMem(n-1)+FibMem(n-2)
+    end
 end
 
 end
