@@ -1,15 +1,22 @@
 module MA934Sorting
 
-export InsertionSort
+export Iter_Sort
 export mergepresorted
 export mergesort
 
-function InsertionSort(a)
-    for i = 1:length(a)-1
-        while a[i] > a[i+1]
-            a[i],a[i+1] = a[i+1],a[i]
-            return InsertionSort(a)
-        end
+function Iter_Sort(a)
+    for i = 2:length(a)
+        tmp = a[i]
+        j = i-1
+            while j != 0
+                if a[j] > tmp
+                    a[j+1],a[j] = a[j],tmp
+                    j = j - 1
+                else
+                    j = 0
+                end
+            end
+        
     end
     return a
 end
@@ -34,4 +41,9 @@ function mergesort(a)
         m = Int(n/2)
         return mergepresorted(mergesort(a[1:m]),mergesort(a[m+1:n]))
     end
+end
+
+
+
+
 end
